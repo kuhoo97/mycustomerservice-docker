@@ -64,6 +64,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>my-customer-service</finalName>
 	</build>
 
 </project>
