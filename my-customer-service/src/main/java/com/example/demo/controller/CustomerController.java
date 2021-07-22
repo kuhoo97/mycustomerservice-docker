@@ -78,7 +78,7 @@ public class CustomerController {
 	
 	
 	@GetMapping("/customers/{id}")
-	public ResponseEntity<Optional<Customer>> getById(@PathVariable("id") Integer id)
+	public ResponseEntity<Customer> getById(@PathVariable("id") Integer id)
 	{
 		log.info("within get by id");
 		return ResponseEntity.status(HttpStatus.OK).body(customerService.getById(id));

@@ -43,11 +43,11 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Optional<Customer> getById(Integer id) {
+	public Customer getById(Integer id) {
 		// TODO Auto-generated method stub
-		Optional<Customer> customer = customerDao.findById(id);
+		Customer customer = customerDao.findById(id).get();
 		log.info("within get by id in customer service");
-		if(customer.isEmpty())
+		if(customer==null)
 		{
 			throw new CustomerNotFoundException("Not found");
 		}
@@ -58,13 +58,13 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public String deleteById(Integer id) {
 		// TODO Auto-generated method stub
-		Optional<Customer> customer1 = customerDao.findById(id);
+		Customer customer1 = customerDao.findById(id).get();
 		log.info("within get by id in customer service");
-		if(customer1.isEmpty())
+		if(customer1==null)
 		{
 			throw new CustomerNotFoundException("Not found");
 		}
-		Customer tempCustomer = customer1.get();
+		Customer tempCustomer = customer1;
 		customerDao.delete(tempCustomer);
 		log.info("deleted");
 		return "Deleted";
@@ -73,13 +73,13 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer updateCustomer(Integer id, Customer customer) {
-		Optional<Customer> customer1 = customerDao.findById(id);
+		Customer customer1 = customerDao.findById(id).get();
 		log.info("within get by id in customer service");
-		if(customer1.isEmpty())
+		if(customer1==null)
 		{
 			throw new CustomerNotFoundException("Not found");
 		}
-		Customer tempCust = customer1.get();
+		Customer tempCust = customer1 ;
 		tempCust.setCustomerName(customer.getCustomerName());
 		tempCust.setCustomerAddress(customer.getCustomerAddress());
 		customerDao.save(tempCust);
